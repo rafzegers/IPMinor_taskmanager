@@ -43,7 +43,7 @@ public class TaskController {
     }
 
     @PostMapping("/new")
-    public String postNew(@Valid @ModelAttribute TaskDTO taskDTO, BindingResult bindingResult, Errors errors, Model model){
+    public String postNew(@Valid @ModelAttribute TaskDTO taskDTO, BindingResult bindingResult,  Model model){
         if(bindingResult.hasErrors()){
             model.addAttribute("errors",bindingResult.getFieldErrors() );
             return "new";
@@ -52,21 +52,21 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/edit/{id}")
     public String getUpdate(Model model, @PathVariable("id") Integer id){
         model.addAttribute("task", taskService.getTask(id) );
         return "update";
     }
 
-    @PostMapping("/update")
-    public String postUpdate(@ModelAttribute TaskDTO taskDTO){
+    @PostMapping("/edit")
+    public String postUpdate(@Valid @ModelAttribute TaskDTO taskDTO, BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("task", taskService.getTask(taskDTO.getId()) );
+            model.addAttribute("errors",bindingResult.getFieldErrors() );
+            return "update";
+        }
         taskService.updateTask(taskDTO);
         return "redirect:/tasks/"+taskDTO.getId();
-    }
-
-    @RequestMapping("/tasks")
-    public String getHome(){
-        return "home";
     }
 
 
@@ -77,12 +77,20 @@ public class TaskController {
     }
 
     @PostMapping("/sub/create")
-    public String postNew(@ModelAttribute SubTaskDTO subTaskDTO){
+    public String postNew(@Valid @ModelAttribute SubTaskDTO subTaskDTO, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("errors",bindingResult.getFieldErrors() );
+            model.addAttribute("id", subTaskDTO.getId() );
+            return "createSubTask";
+        }
+
         taskService.addSubTask(subTaskDTO);
         return "redirect:/tasks/"+subTaskDTO.getId();
     }
 
-
-
+    @RequestMapping("/home")
+    public String getHome(){
+        return "home";
+    }
 
 }

@@ -29,8 +29,14 @@
 </style>
 <body>
 
-<form action="/tasks/update" method="post" th:if="${task!=null}">
+<form action="/tasks/edit" method="post" th:if="${task!=null}">
     <h2>Update Task</h2>
+    <div class="alert alert-danger" role="alert">
+        <div th:each="fielderror : ${errors}">
+            <p th:text="*{fielderror.defaultMessage}"></p>
+        </div>
+    </div>
+
     <input type="hidden" name="id" th:value="*{task.id}">
     <div class="form-group">
         <label for="titel">Titel</label>

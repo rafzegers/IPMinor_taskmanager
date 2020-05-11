@@ -1,6 +1,20 @@
 package com.taskmanager.taskmanager.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+//@Entity
 public class SubTask {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @NotEmpty
+    @NotNull
     private String titel, beschrijving;
 
     public SubTask(String title, String desciption){
@@ -22,5 +36,13 @@ public class SubTask {
 
     public void setBeschrijving(String beschrijving) {
         this.beschrijving = beschrijving;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

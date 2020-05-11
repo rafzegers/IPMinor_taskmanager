@@ -1,7 +1,20 @@
 package com.taskmanager.taskmanager.dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class SubTaskDTO {
-    private String titel, beschrijving;
+
+    @NotNull(message = "Titel mag niet null zijn.")
+    @NotEmpty(message = "Titel mag niet leeg zijn.")
+    private String titel;
+
+    @NotNull(message = "Beschrijving mag niet null zijn.")
+    @NotEmpty(message = "Beschrijving mag niet leeg zijn.")
+    private  String beschrijving;
+
+    @Min(value = 0, message = "negatieve id kan niet")
     private int id;
 
     public String getTitel() {

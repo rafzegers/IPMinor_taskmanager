@@ -1,15 +1,30 @@
 package com.taskmanager.taskmanager.domain;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+//@Entity
 public class Task {
 
-    private String titel,beschrijving;
-    private LocalDateTime datum;
+    @Id
+    @GeneratedValue
     private int id;
+
+    @NotEmpty
+    @NotNull
+    private String titel,beschrijving;
+
+    @NotEmpty
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime datum;
+
+    @OneToMany
     private ArrayList<SubTask> subTasks;
 
     public Task(String titel, String beschrijving, LocalDateTime datum, int id){

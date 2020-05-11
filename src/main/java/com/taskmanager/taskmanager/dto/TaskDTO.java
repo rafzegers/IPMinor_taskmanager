@@ -1,5 +1,7 @@
 package com.taskmanager.taskmanager.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ public class TaskDTO {
     private String beschrijving;
 
     @NotNull(message = "datum mag niet leeg zijn")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datum;
 
     @Min(value = 0, message = "negatieve id kan niet")
