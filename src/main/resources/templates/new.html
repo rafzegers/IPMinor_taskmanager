@@ -31,6 +31,12 @@
 
 <form action="/tasks/new" method="post">
     <h2>New Task</h2>
+    <div class="alert alert-danger" role="alert">
+        <div th:each="fielderror : ${errors}">
+            <p th:text="*{fielderror.defaultMessage}"></p>
+        </div>
+    </div>
+
     <div class="form-group">
         <label for="titel">Titel</label>
         <input type="text" class="form-control" id="titel" name="titel" placeholder="title">

@@ -1,12 +1,23 @@
 package com.taskmanager.taskmanager.dto;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TaskDTO {
 
-    private String titel,beschrijving;
+    @NotNull(message = "Titel mag niet null zijn.")
+    @NotEmpty(message = "Titel mag niet leeg zijn.")
+    private String titel;
+
+    @NotNull(message = "Beschrijving mag niet null zijn.")
+    @NotEmpty(message = "Beschrijving mag niet leeg zijn.")
+    private String beschrijving;
+
+    @NotNull(message = "datum mag niet leeg zijn")
     private LocalDateTime datum;
+
+    @Min(value = 0, message = "negatieve id kan niet")
     private int id;
 
     public String getTitel() {

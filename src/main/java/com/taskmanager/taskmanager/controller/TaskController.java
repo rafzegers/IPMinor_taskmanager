@@ -7,8 +7,11 @@ import com.taskmanager.taskmanager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Controller
@@ -40,7 +43,11 @@ public class TaskController {
     }
 
     @PostMapping("/new")
-    public String postNew(@ModelAttribute TaskDTO taskDTO){
+    public String postNew(@Valid @ModelAttribute TaskDTO taskDTO, BindingResult bindingResult, Errors errors, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("errors",bindingResult.getFieldErrors() );
+            return "new";
+        }
         taskService.addTask(taskDTO);
         return "redirect:/tasks";
     }
