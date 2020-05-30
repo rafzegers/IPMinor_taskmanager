@@ -2,7 +2,7 @@
 
 by Raf Zegers - R0759849
 
-###stories
+## stories
 1) Show Tasks
 2) Show task details
 3) Create tasks
@@ -16,5 +16,5 @@ by Raf Zegers - R0759849
 * Test 65%
 * CircleCi
 
-###github
+## github
 https://github.com/rafzegers/IPMinor_taskmanager.git
