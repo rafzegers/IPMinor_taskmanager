@@ -13,7 +13,7 @@ by Raf Zegers - R0759849
 8) Security -> niet
 
 * JPA
-* Test 65%
+* Tests
 * CircleCi
 
 ## github
