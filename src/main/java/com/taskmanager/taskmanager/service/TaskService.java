@@ -3,18 +3,20 @@ package com.taskmanager.taskmanager.service;
 import com.taskmanager.taskmanager.domain.Task;
 import com.taskmanager.taskmanager.dto.SubTaskDTO;
 import com.taskmanager.taskmanager.dto.TaskDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface TaskService {
 
-    public List<Task> tasks();
+    List<TaskDTO> tasks();
 
-    public void addTask(TaskDTO task);
+    void addTask(TaskDTO task);
 
-    public Task getTask(int id);
+    TaskDTO getTask(int id);
 
-    public void updateTask(TaskDTO task);
+    void updateTask(TaskDTO task);
 
-    public void addSubTask(SubTaskDTO subTaskDTO);
+    void addSubTask(SubTaskDTO subTaskDTO);
 }

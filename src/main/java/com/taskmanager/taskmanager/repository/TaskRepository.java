@@ -51,7 +51,7 @@ public class TaskRepository {
     public void addSubTask(SubTask subTask, int taskId){
         for(Task task : tasks){
             if(task.getId() == taskId){
-                task.addSubTask(subTask);
+                //task.addSubTask(subTask);
             }
         }
     }

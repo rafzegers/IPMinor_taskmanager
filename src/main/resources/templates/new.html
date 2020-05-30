@@ -29,8 +29,11 @@
 </style>
 <body>
 
+<div th:replace="include/nav"></div>
+<div th:replace="include/language"></div>
+
 <form action="/tasks/new" method="post">
-    <h2>New Task</h2>
+    <h2 th:text="#{NewTask}"></h2>
     <div class="alert alert-danger" role="alert">
         <div th:each="fielderror : ${errors}">
             <p th:text="*{fielderror.defaultMessage}"></p>
@@ -38,21 +41,22 @@
     </div>
 
     <div class="form-group">
-        <label for="titel">Titel</label>
+        <label for="titel" th:text="#{Title}"></label>
         <input type="text" class="form-control" id="titel" name="titel" placeholder="title">
     </div>
 
     <div class="form-group">
-        <label for="beschrijving">Beschrijving</label>
+        <label for="beschrijving" th:text="#{Description}"></label>
         <textarea class="form-control" id="beschrijving" name="beschrijving" rows="3"></textarea>
     </div>
 
     <div class="form-group">
-        <label for="datum">Date</label>
+        <label for="datum" th:text="#{Date}"></label>
         <input type="datetime-local" class="form-control" id="datum" name="datum">
+        <p th:text="#{DateFormat}"></p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" th:text="#{Submit}"></button>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

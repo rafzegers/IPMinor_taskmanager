@@ -6,21 +6,20 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-//@Entity
+@Entity
 public class SubTask {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @NotEmpty
-    @NotNull
     private String titel, beschrijving;
 
     public SubTask(String title, String desciption){
         this.setTitel(title);
         this.setBeschrijving(desciption);
     }
+    public SubTask(){}
 
     public String getTitel() {
         return titel;

@@ -5,33 +5,31 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-//@Entity
+@Entity
 public class Task {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @NotEmpty
-    @NotNull
     private String titel,beschrijving;
-
-    @NotEmpty
-    @NotNull
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime datum;
 
-    @OneToMany
-    private ArrayList<SubTask> subTasks;
+    @OneToMany(cascade= CascadeType.ALL)
+    private List<SubTask> subTasks;
 
     public Task(String titel, String beschrijving, LocalDateTime datum, int id){
         setTitel(titel);
         setBeschrijving(beschrijving);
         setDatum(datum);
         setId(id);
+        subTasks = new ArrayList<>();
+    }
+    public Task(){
         subTasks = new ArrayList<>();
     }
 
@@ -71,7 +69,7 @@ public class Task {
     public void addSubTask(SubTask subTask){
         this.subTasks.add(subTask);
     }
-    public ArrayList<SubTask> getSubTasks() {
+    public List<SubTask> getSubTasks() {
         return subTasks;
     }
 }

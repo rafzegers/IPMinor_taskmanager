@@ -26,28 +26,35 @@
     body{
         background-color: cadetblue;
     }
+    td{
+        padding: 0px 2rem;
+    }
 </style>
 <body>
 
+<div th:replace="include/nav"></div>
+<div th:replace="include/language"></div>
 
 <div class="task">
-    <h1>Task Overview</h1>
+    <h1 th:text="#{TaskOverview}"></h1>
     <table th:if="${tasks!=null and !tasks.empty}">
-        <title>Task Overview</title>
+        <title th:text="#{TaskOverview}"></title>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Date</th>
+            <th th:text="#{Name}"></th>
+            <th th:text="#{Date}"></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}">
             <td th:text="*{task.titel}"></td>
             <td th:text="|due *{task.datum.getDayOfMonth()} *{task.datum.getMonth().toString().toLowerCase()} at *{task.datum.getHour()}:*{task.datum.getMinute()}|"></td>
+            <td><a th:text="#{Details}" th:href="@{/tasks/{id}(id=${task.id})}">edit</a></td>
         </tr>
         </tbody>
     </table>
-    <h2 th:if="${tasks==null or tasks.empty}">No tasks left to do</h2>
+    <h2 th:if="${tasks==null or tasks.empty}" th:text="#{NoTasks}"></h2>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

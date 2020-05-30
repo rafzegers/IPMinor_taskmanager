@@ -1,10 +1,13 @@
 package com.taskmanager.taskmanager.dto;
 
+import com.taskmanager.taskmanager.domain.SubTask;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskDTO {
 
@@ -22,6 +25,8 @@ public class TaskDTO {
 
     @Min(value = 0, message = "negatieve id kan niet")
     private int id;
+
+    private List<SubTaskDTO> subTasks;
 
     public String getTitel() {
         return titel;
@@ -43,8 +48,8 @@ public class TaskDTO {
         return datum;
     }
 
-    public void setDatum(String datum) {
-        this.datum = LocalDateTime.parse(datum);
+    public void setDatum(LocalDateTime datum) {
+        this.datum = datum;
     }
 
     public int getId() {
@@ -53,5 +58,14 @@ public class TaskDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public void setSubTasks(List<SubTaskDTO> subTasks) {
+        this.subTasks = subTasks;
+    }
+
+    public List<SubTaskDTO> getSubTasks() {
+        return subTasks;
     }
 }

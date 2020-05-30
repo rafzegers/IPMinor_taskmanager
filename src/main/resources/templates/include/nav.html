@@ -1,0 +1,35 @@
+<div id="nav_selection" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="link"><a th:text="#{Home}" href="/">Home</a></div>
+    <div class="link"><a th:text="#{Tasks}" href="/tasks">Tasks</a></div>
+    <div class="link"><a th:text="#{New}" href="/tasks/new">New</a></div>
+    <!-- de reden voor US ipv EN is omdat de browser anders niet wilt switchen -->
+</div>
+<style>
+    #nav_selection{
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        width: min-content;
+        height: min-content;
+    }
+    .link{
+        height: 2rem;
+        border-radius: 1rem;
+        background-color: white;
+        color: cadetblue;
+        font-size: 1rem;
+        display: flex;
+        margin: 0.2rem;
+        padding: 0 8px;
+    }
+    .link:hover{
+        background-color: #ddd;
+    }
+    .link a{
+        text-decoration: none;
+        margin: auto;
+    }
+</style>

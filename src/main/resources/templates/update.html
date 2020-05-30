@@ -29,8 +29,11 @@
 </style>
 <body>
 
+<div th:replace="include/nav"></div>
+<div th:replace="include/language"></div>
+
 <form action="/tasks/edit" method="post" th:if="${task!=null}">
-    <h2>Update Task</h2>
+    <h2 th:text="#{TaskUpdate}"></h2>
     <div class="alert alert-danger" role="alert">
         <div th:each="fielderror : ${errors}">
             <p th:text="*{fielderror.defaultMessage}"></p>
@@ -39,23 +42,24 @@
 
     <input type="hidden" name="id" th:value="*{task.id}">
     <div class="form-group">
-        <label for="titel">Titel</label>
+        <label for="titel" th:text="#{Title}"></label>
         <input type="text" class="form-control" id="titel" name="titel" placeholder="title" th:value="*{task.titel}">
     </div>
 
     <div class="form-group">
-        <label for="beschrijving">Beschrijving</label>
+        <label for="beschrijving" th:text="#{Description}"></label>
         <textarea class="form-control" id="beschrijving" name="beschrijving" rows="3" th:text="*{task.beschrijving}"></textarea>
     </div>
 
     <div class="form-group">
-        <label for="datum">Date</label>
+        <label for="datum" th:text="#{Date}"></label>
         <input type="datetime-local" class="form-control" id="datum" name="datum" th:value="*{task.datum}">
+        <p th:text="#{DateFormat}"></p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary" th:text="#{Update}"></button>
 </form>
-<h2 th:if="${task==null}">Task not found</h2>
+<h2 th:if="${task==null}" th:text="#{TaskNotFound}"></h2>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

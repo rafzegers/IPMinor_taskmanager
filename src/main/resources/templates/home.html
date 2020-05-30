@@ -29,19 +29,17 @@
 </style>
 <body>
 
-
-
+<div th:replace="include/nav"></div>
+<div th:replace="include/language"></div>
 
 <form>
-    <h2>Navigation</h2>
-    <a href="/">home (/)</a><br>
-    <a href="/tasks">see all tasks (/tasks)</a><br>
-    <a href="/tasks/new">create new task (/tasks/new)</a><br>
-    <h2>Those needing specific parameters</h2>
-    <p>
-        to see the details of a task: (/tasks/{id})<br>
-        to update a task: (/tasks/edit/{id})<br>
-        to create a subtask: (/tasks/{id}/sub/create)<br>
+    <h2 th:text="#{Navigation}"></h2>
+    <a href="/" th:text="#{NavigationHome}">home (/)</a><br>
+    <a href="/tasks" th:text="#{NavigationAllTasks}">see all tasks (/tasks)</a><br>
+    <a href="/tasks/new" th:text="#{NavigationNewTask}">create new task (/tasks/new)</a><br>
+    <h2 th:text="#{SpecificParam}"></h2>
+    <p th:utext="#{OtherLinks}">
+
     </p>
 </form>
 

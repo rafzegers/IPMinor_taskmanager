@@ -5,6 +5,7 @@ import com.taskmanager.taskmanager.dto.SubTaskDTO;
 import com.taskmanager.taskmanager.dto.TaskDTO;
 import com.taskmanager.taskmanager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,12 +18,15 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
-    private final TaskService taskService;
 
+    @Qualifier("TaskServiceJPA")
     @Autowired
-    public TaskController(TaskService taskService){
-        this.taskService = taskService;
-    }
+    TaskService taskService;
+
+    //@Autowired
+    //public TaskController(TaskService taskService){
+    //    this.taskService = taskService;
+    //}
 
     @GetMapping
     public String getTasks(Model model){

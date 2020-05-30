@@ -32,10 +32,17 @@
 </style>
 <body>
 
+<div th:replace="include/nav"></div>
+<div th:replace="include/language"></div>
 
 <div class="task">
-    <h1>Task Overview</h1>
+    <h1 th:text="#{TaskInfo}"></h1>
     <div th:if="${task!=null}">
+        <p>
+            <a th:text="#{Edit}" th:href="@{/tasks/edit/{id}(id=${task.id})}">edit</a>
+             -
+            <a th:text="#{NewSubTask}" th:href="@{/tasks/{id}/sub/create(id=${task.id})}">add subtask</a>
+        </p>
         <h2 th:text="*{task.titel}"></h2>
         <p th:text="*{task.beschrijving}"></p>
         <section th:each="subTask : ${task.subTasks}">
@@ -44,7 +51,7 @@
         </section>
         <p th:text="|due *{task.datum.getDayOfMonth()} *{task.datum.getMonth().toString().toLowerCase()} at *{task.datum.getHour()}:*{task.datum.getMinute()}|"></p>
     </div>
-    <h2 th:if="${task==null}">Task not found</h2>
+    <h2 th:if="${task==null}" th:text="#{TaskNotFound}"></h2>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
